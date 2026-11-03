@@ -1,3 +1,4 @@
+
 ﻿# 개발 워크스테이션 구축 미션
 
 ## 1. 프로젝트 개요
@@ -225,3 +226,5 @@ Attributes : Archive
 - 확인 명령어: git --version
 - 설치 버전: git version 2.56.0.windows.4
 - 결과: 정상 확인 완료
+
+
