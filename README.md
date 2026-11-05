@@ -238,6 +238,7 @@ Get-Content -Encoding UTF8 .\README.md
 
 결과:
 README.md의 한글이 정상 출력되었다.
+
 10-2
  컨테이너 이름 충돌 오류
 증상:
