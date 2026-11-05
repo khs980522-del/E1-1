@@ -267,12 +267,6 @@ Bind Mount 적용 전/후 화면
 Docker Volume 생성 및 실행 화면
 Volume 영속성 확인 화면
 GitHub 업로드 결과 화면
-![docker build](./screenshots/docker-build.png)
-![docker ps](./screenshots/docker-ps.png)
-![browser 8080](./screenshots/browser-8080.png)
-![bind before](./screenshots/bind-before.png)
-![bind after](./screenshots/bind-after.png)
-![volume test](./screenshots/volume-test.png)
  
 
 ## 12. 최종 정리
