@@ -4,7 +4,8 @@
 
 이 저장소는 개발 입문 미션인 **"내 컴퓨터에 개발자용 작업실 꾸미기"** 수행 결과를 정리한 저장소입니다.
 
-터미널, Docker, Git/GitHub를 사용하여 개발 환경을 구성하고, **Dockerfile 기반 웹 서버 실행**, **포트 매핑**, **바인드 마운트**, **볼륨 영속성** 등을 실습했습니다.
+터미널, Docker, Git/GitHub를 사용하여 개발 환경을 구성하고,  
+**Dockerfile 기반 웹 서버 실행**, **포트 매핑**, **바인드 마운트**, **볼륨 영속성** 등을 실습했습니다.
 
 ---
 
@@ -56,8 +57,10 @@
 
 
 ## 5. 폴더 역할
-site: 웹 서버에서 보여줄 HTML 파일 저장
-practice: 터미널 명령어, 복사, 이동, 삭제, 권한 실습용
+site : 웹 서버에서 보여줄 HTML 파일 저장
+practice : 터미널 명령어, 복사, 이동, 삭제, 권한 실습용
+screenshots : Docker 실행, 브라우저 접속, GitHub 연동 증거 이미지 저장
+docs : 추가 문서나 로그 저장
 screenshots: Docker 실행, 브라우저 접속, GitHub 연동 증거 이미지 저장
 docs: 추가 문서나 로그 저장
 
@@ -174,7 +177,8 @@ Docker Volume Test
 Data survives container deletion.
 
 8-7. 데이터 영속성 검증
-기존 컨테이너를 삭제한 뒤, 동일한 Docker Volume(webdata)을 연결하여 새 컨테이너를 실행하였다.
+Docker Volume의 영속성을 확인하기 위해, 기존 컨테이너를 삭제한 뒤 동일한 Volume을 새 컨테이너에 다시 연결하여 데이터를 확인하였다.
+웹 서버 실습과 별도로, Ubuntu 컨테이너를 사용하여 같은 개념의 영속성을 추가 검증하였다.
 
 사용한 명령어:
 docker rm -f my-web-volume
@@ -217,6 +221,7 @@ Git 설치 확인 완료
 로컬/원격 저장소 동기화 완료
 
 ## 10. 트러블슈팅
+10-1
 README 한글 깨짐 문제
 증상:
 PowerShell에서 Get-Content README.md 실행 시 한글이 깨져 보였다.
@@ -233,3 +238,48 @@ Get-Content -Encoding UTF8 .\README.md
 
 결과:
 README.md의 한글이 정상 출력되었다.
+10-2
+ 컨테이너 이름 충돌 오류
+증상:
+이미 존재하는 컨테이너 이름으로 docker run 명령을 실행할 때 충돌 오류가 발생했다.
+
+오류 예시:
+Conflict. The container name "/my-web-bind" is already in use
+
+원인:
+동일한 이름의 컨테이너가 이미 생성되어 있었기 때문이다.
+
+해결 방법:
+기존 컨테이너를 삭제하거나
+다른 이름으로 새 컨테이너를 생성하면 된다.
+
+예시:
+docker rm -f my-web-bind
+
+## 11. 실행 화면 / 스크린샷
+
+다음 항목들을 캡처하여 screenshots 폴더에 저장하였다.
+
+Docker 이미지 빌드 성공 화면
+docker ps 실행 결과
+http://localhost:8080 접속 화면
+Bind Mount 적용 전/후 화면
+Docker Volume 생성 및 실행 화면
+Volume 영속성 확인 화면
+GitHub 업로드 결과 화면
+![docker build](./screenshots/docker-build.png)
+![docker ps](./screenshots/docker-ps.png)
+![browser 8080](./screenshots/browser-8080.png)
+![bind before](./screenshots/bind-before.png)
+![bind after](./screenshots/bind-after.png)
+![volume test](./screenshots/volume-test.png)
+ 
+
+## 12. 최종 정리
+이번 미션을 통해 Windows 환경에서 개발에 필요한 기본 작업 공간을 직접 구성해 보았다.
+터미널 기본 조작, 파일 및 속성 관리, Docker 컨테이너 실행, 웹 서버 이미지 빌드, 포트 매핑, Bind Mount, Volume 영속성, Git/GitHub 연동까지 개발 환경의 핵심 요소를 단계적으로 실습할 수 있었다.
+
+특히 Docker 실습을 통해 단순히 컨테이너를 실행하는 것을 넘어서,
+개발 중에는 Bind Mount가 유용하고, 데이터 유지가 필요할 때는 Volume이 적합하다는 점을 직접 확인할 수 있었다.
+
+이 과정을 통해 로컬 개발 환경을 스스로 구성하고 관리하는 기본 흐름을 익힐 수 있었다.
