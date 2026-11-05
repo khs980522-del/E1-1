@@ -56,8 +56,6 @@
 
 
 ## 5. 폴더 역할
-...
-
 site: 웹 서버에서 보여줄 HTML 파일 저장
 practice: 터미널 명령어, 복사, 이동, 삭제, 권한 실습용
 screenshots: Docker 실행, 브라우저 접속, GitHub 연동 증거 이미지 저장
@@ -66,17 +64,15 @@ docs: 추가 문서나 로그 저장
 ## 6. 터미널 조작 로그
 
 6-1. 현재 폴더 목록 확인
-사용한 명령어
-
+사용한 명령어:
 Get-ChildItem -Force
-확인 내용
 
+확인 내용:
 docs, practice, screenshots, site 폴더가 생성되었음을 확인했다.
 README.md 파일이 생성되었음을 확인했다.
 
 6-2. 터미널 기본 조작 실습
-수행한 작업
-
+수행한 작업:
 현재 위치 확인
 practice 폴더로 이동
 terminal-basic.txt 파일 생성
@@ -86,13 +82,13 @@ moved 폴더 생성
 복사한 파일을 moved 폴더로 이동
 delete-me.txt 파일 생성 후 삭제
 practice 폴더 전체 구조 확인
-확인 결과
 
+확인 결과:
 practice/terminal-basic.txt 파일이 존재한다.
 practice/moved/copied-terminal-basic.txt 파일이 존재한다.
 delete-me.txt 파일은 삭제되어 존재하지 않는다.
-사용한 주요 명령어
 
+사용한 주요 명령어:
 Get-Location
 Set-Location .\practice
 Set-Content
@@ -104,15 +100,14 @@ Remove-Item
 Get-ChildItem -Recurse -Force
 
 6-3. 권한/속성 실습
-수행한 작업
-
+수행한 작업:
 permission-test.txt 파일 생성
 파일 속성 확인
 읽기 전용 속성 설정
 읽기 전용 속성 해제
 변경 결과 확인
-증거 로그
 
+증거 로그:
 Set-Content -Path .\practice\permission-test.txt -Value "permission practice" -Encoding UTF8
 Set-ItemProperty -Path .\practice\permission-test.txt -Name IsReadOnly -Value $true
 Set-ItemProperty -Path .\practice\permission-test.txt -Name IsReadOnly -Value $false
@@ -123,7 +118,6 @@ hello-world 컨테이너 실행 확인
 ubuntu 컨테이너 실행 및 기본 명령 실습 완료
 
 ## 8. Docker 웹 서버 컨테이너 실습
-
 8-1. 실습 목표
 Dockerfile을 이용해 웹 서버 이미지를 생성한다.
 컨테이너를 실행하고 브라우저에서 정상 동작을 확인한다.
@@ -136,74 +130,68 @@ site/index.html
 
 8-3. Docker 이미지 빌드
 Dockerfile을 작성한 뒤 아래 명령어로 이미지를 빌드하였다.
-
 docker build -t my-web:latest .
+
 빌드가 정상적으로 완료되면 my-web:latest 이미지가 생성된다.
 
 8-4. 웹 서버 컨테이너 실행 및 확인
 생성한 이미지를 이용하여 웹 서버 컨테이너를 실행하고, 브라우저에서 접속을 확인하였다.
 
-실행 명령어
-
+실행 명령어:
 docker run -d -p 8080:80 my-web:latest
-브라우저 접속 주소
 
+브라우저 접속 주소:
 http://localhost:8080
 정상적으로 웹 페이지가 출력되는 것을 확인하였다.
 
 8-5. Bind Mount 적용
 로컬의 site 폴더를 컨테이너 내부의 /usr/share/nginx/html 경로에 연결하여 Bind Mount를 적용하였다.
 
-실행 명령어
-
+실행 명령어:
 docker run -d --name my-web-bind -p 8080:80 -v ${PWD}/site:/usr/share/nginx/html nginx
+
 이후 로컬의 site/index.html 파일을 수정한 뒤 브라우저를 새로고침하여 변경 내용이 즉시 반영되는 것을 확인하였다.
 
-Bind Mount 확인 결과
-
+Bind Mount 확인 결과:
 로컬 파일을 수정하면 컨테이너 내부 웹 페이지에도 바로 반영되었다.
 이를 통해 Bind Mount가 정상적으로 동작함을 확인하였다.
 
 8-6. Docker Volume 생성 및 연결
 Docker Volume을 생성한 후, 해당 볼륨을 웹 서버 컨테이너에 연결하였다.
 
-사용한 명령어
-
+사용한 명령어:
 docker volume create webdata
 docker run -d --name my-web-volume -p 8081:80 -v webdata:/usr/share/nginx/html my-web:latest
+
 이후 컨테이너 내부의 /usr/share/nginx/html/index.html 파일을 수정하였다.
 
-수정 후 브라우저 접속 주소
-
+수정 후 브라우저 접속 주소:
 http://localhost:8081
 변경된 HTML 내용이 정상적으로 출력되는 것을 확인하였다.
 
-수정한 내용
-
+수정한 내용:
 Docker Volume Test
 Data survives container deletion.
 
 8-7. 데이터 영속성 검증
 기존 컨테이너를 삭제한 뒤, 동일한 Docker Volume(webdata)을 연결하여 새 컨테이너를 실행하였다.
 
-사용한 명령어
-
+사용한 명령어:
 docker rm -f my-web-volume
 docker run -d --name my-web-volume-2 -p 8081:80 -v webdata:/usr/share/nginx/html my-web:latest
-이후 다시 브라우저에서 아래 주소로 접속하였다.
 
+이후 다시 브라우저에서 아래 주소로 접속하였다.
 http://localhost:8081
+
 이전 컨테이너에서 수정했던 HTML 내용이 그대로 유지되는 것을 확인하였다.
 
-영속성 검증 결과
-
+영속성 검증 결과:
 컨테이너를 삭제해도 Volume에 저장된 데이터는 사라지지 않았다.
 동일한 Volume을 새 컨테이너에 연결하자 이전 데이터가 그대로 유지되었다.
 이를 통해 Docker Volume의 데이터 영속성을 확인하였다.
 
 8-8. 실습 결과 요약
 이번 실습을 통해 다음 내용을 확인하였다.
-
 Dockerfile을 이용해 웹 서버 이미지를 생성할 수 있다.
 생성한 이미지를 기반으로 컨테이너를 실행하고 웹 브라우저에서 확인할 수 있다.
 Bind Mount를 사용하면 로컬 파일 수정 사항이 컨테이너에 즉시 반영된다.
@@ -211,7 +199,6 @@ Docker Volume을 사용하면 컨테이너를 삭제해도 데이터가 유지�
 
 8-9. 결론
 이번 실습에서는 Docker를 이용하여 웹 서버 컨테이너를 구축하고, Bind Mount와 Volume의 차이를 직접 확인하였다.
-
 Bind Mount는 로컬 개발 환경과 컨테이너를 연결할 때 유용하다.
 Volume은 컨테이너 삭제 이후에도 데이터를 유지해야 할 때 유용하다.
 특히 Volume을 이용한 실습에서, 컨테이너를 삭제한 뒤에도 HTML 파일 수정 내용이 그대로 유지되는 것을 확인함으로써 Docker Volume의 영속성 특징을 명확히 이해할 수 있었다.
@@ -221,7 +208,6 @@ Volume은 컨테이너 삭제 이후에도 데이터를 유지해야 할 때 유
 
 The container name "..." is already in use
 이 경우 기존 컨테이너를 삭제한 뒤 다시 실행하면 된다.
-
 docker rm -f 컨테이너이름
 
 ## 9. Git/GitHub 설정 로그
@@ -232,21 +218,18 @@ Git 설치 확인 완료
 
 ## 10. 트러블슈팅
 README 한글 깨짐 문제
-증상
-
+증상:
 PowerShell에서 Get-Content README.md 실행 시 한글이 깨져 보였다.
 
-원인
-
+원인:
 터미널 코드페이지와 PowerShell 출력 인코딩이 UTF-8로 맞지 않아 발생했다.
 
-해결
-
+해결:
 chcp 65001
 [Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
 $OutputEncoding = [Console]::OutputEncoding
 Get-Content -Encoding UTF8 .\README.md
 
-결과
+결과:
 README.md의 한글이 정상 출력되었다.
