@@ -52,12 +52,15 @@
 ├─ practice/
 ├─ screenshots/
 └─ docs/
+
 5. 폴더 역할
 site: 웹 서버에서 보여줄 HTML 파일 저장
 practice: 터미널 명령어, 복사, 이동, 삭제, 권한 실습용
 screenshots: Docker 실행, 브라우저 접속, GitHub 연동 증거 이미지 저장
 docs: 추가 문서나 로그 저장
-6. 터미널 조작 로그
+
+## 6. 터미널 조작 로그
+
 6-1. 현재 폴더 목록 확인
 사용한 명령어
 
@@ -66,6 +69,7 @@ Get-ChildItem -Force
 
 docs, practice, screenshots, site 폴더가 생성되었음을 확인했다.
 README.md 파일이 생성되었음을 확인했다.
+
 6-2. 터미널 기본 조작 실습
 수행한 작업
 
@@ -94,6 +98,7 @@ New-Item
 Move-Item
 Remove-Item
 Get-ChildItem -Recurse -Force
+
 6-3. 권한/속성 실습
 수행한 작업
 
@@ -107,19 +112,24 @@ permission-test.txt 파일 생성
 Set-Content -Path .\practice\permission-test.txt -Value "permission practice" -Encoding UTF8
 Set-ItemProperty -Path .\practice\permission-test.txt -Name IsReadOnly -Value $true
 Set-ItemProperty -Path .\practice\permission-test.txt -Name IsReadOnly -Value $false
-7. Docker 점검 로그
+
+## 7. Docker 점검 로그
 Docker Desktop 설치 및 실행 확인
 hello-world 컨테이너 실행 확인
 ubuntu 컨테이너 실행 및 기본 명령 실습 완료
-8. Docker 웹 서버 컨테이너 실습
+
+## 8. Docker 웹 서버 컨테이너 실습
+
 8-1. 실습 목표
 Dockerfile을 이용해 웹 서버 이미지를 생성한다.
 컨테이너를 실행하고 브라우저에서 정상 동작을 확인한다.
 Bind Mount를 이용해 로컬 파일 수정 사항이 컨테이너에 즉시 반영되는지 확인한다.
 Docker Volume을 이용해 컨테이너 삭제 후에도 데이터가 유지되는지 확인한다.
+
 8-2. 프로젝트 구성
 Dockerfile
 site/index.html
+
 8-3. Docker 이미지 빌드
 Dockerfile을 작성한 뒤 아래 명령어로 이미지를 빌드하였다.
 
@@ -149,6 +159,7 @@ Bind Mount 확인 결과
 
 로컬 파일을 수정하면 컨테이너 내부 웹 페이지에도 바로 반영되었다.
 이를 통해 Bind Mount가 정상적으로 동작함을 확인하였다.
+
 8-6. Docker Volume 생성 및 연결
 Docker Volume을 생성한 후, 해당 볼륨을 웹 서버 컨테이너에 연결하였다.
 
@@ -167,6 +178,7 @@ http://localhost:8081
 
 Docker Volume Test
 Data survives container deletion.
+
 8-7. 데이터 영속성 검증
 기존 컨테이너를 삭제한 뒤, 동일한 Docker Volume(webdata)을 연결하여 새 컨테이너를 실행하였다.
 
@@ -184,6 +196,7 @@ http://localhost:8081
 컨테이너를 삭제해도 Volume에 저장된 데이터는 사라지지 않았다.
 동일한 Volume을 새 컨테이너에 연결하자 이전 데이터가 그대로 유지되었다.
 이를 통해 Docker Volume의 데이터 영속성을 확인하였다.
+
 8-8. 실습 결과 요약
 이번 실습을 통해 다음 내용을 확인하였다.
 
@@ -191,6 +204,7 @@ Dockerfile을 이용해 웹 서버 이미지를 생성할 수 있다.
 생성한 이미지를 기반으로 컨테이너를 실행하고 웹 브라우저에서 확인할 수 있다.
 Bind Mount를 사용하면 로컬 파일 수정 사항이 컨테이너에 즉시 반영된다.
 Docker Volume을 사용하면 컨테이너를 삭제해도 데이터가 유지된다.
+
 8-9. 결론
 이번 실습에서는 Docker를 이용하여 웹 서버 컨테이너를 구축하고, Bind Mount와 Volume의 차이를 직접 확인하였다.
 
@@ -205,12 +219,14 @@ The container name "..." is already in use
 이 경우 기존 컨테이너를 삭제한 뒤 다시 실행하면 된다.
 
 docker rm -f 컨테이너이름
-9. Git/GitHub 설정 로그
+
+## 9. Git/GitHub 설정 로그
 Git 설치 확인 완료
 로컬 저장소 초기화 완료
 원격 저장소 연결 완료
 로컬/원격 저장소 동기화 완료
-10. 트러블슈팅
+
+## 10. 트러블슈팅
 README 한글 깨짐 문제
 증상
 
