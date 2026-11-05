@@ -52,8 +52,12 @@
 ├─ practice/
 ├─ screenshots/
 └─ docs/
+```
 
-5. 폴더 역할
+
+## 5. 폴더 역할
+...
+
 site: 웹 서버에서 보여줄 HTML 파일 저장
 practice: 터미널 명령어, 복사, 이동, 삭제, 권한 실습용
 screenshots: Docker 실행, 브라우저 접속, GitHub 연동 증거 이미지 저장
