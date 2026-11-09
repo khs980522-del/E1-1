@@ -39,8 +39,8 @@ git version 2.53.0
 - [x] 포트 매핑 접속 (2회 이상)
 - [x] 바인드 마운트 반영
 - [x] 볼륨 영속성
-- [ ] Git 설정 + GitHub/VSCode 연동
-- [ ] (보너스) Compose / 환경변수 / SSH 키
+- [x] Git 설정 + GitHub/VSCode 연동
+- [x] (보너스)  환경변수 
 
 ## 4) 수행 로그
 
