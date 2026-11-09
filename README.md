@@ -231,7 +231,7 @@ Server:
 ```
 
 - 판정: Server 섹션이 정상 출력되므로 Docker 데몬이 동작 중이다.
-- 📸 증거: `docs/images/step3-docker-info.png` (docs/images/step3-docker-info.png)
+- 📸 증거: ![docker info Server 섹션 정상 출력](docs/images/step3-docker-info.png)
 
 ### Step 4. Docker 기본 운영 명령
 ```bash
@@ -696,7 +696,7 @@ git config --global user.name "..."
 git config --global init.defaultBranch main
 git config --list
 ```
-- VSCode GitHub 연동 스크린샷: `docs/images/github-vscode.png`
+- VSCode GitHub 연동 스크린샷: ![VSCode GitHub 연동 화면](docs/images/github-vscode.png)
 - Git vs GitHub 역할 차이: 
 
 ## 5) 검증 방법 요약
@@ -719,7 +719,7 @@ git config --list
 - 원인 가설: Docker Desktop의 WSL integration이 Ubuntu 배포판에 대해 꺼져 있다.
 - 확인: Docker Desktop → Settings → Resources → WSL integration
 - 해결: Ubuntu 토글 ON → Apply & restart. 이후 CLI 경로가 `/usr/local/lib/docker/...`로 바뀌고 Context가 `default`가 됨
-- 📸 증거: `docs/images/ts1-wsl-integration.png` (docs/images/ts1-wsl-integration.png)
+- 📸 증거: ![Docker Desktop WSL integration 설정](docs/images/ts1-wsl-integration.png)
 
 **3단계: 소켓 권한 오류**
 - 문제: `permission denied while trying to connect to the docker API at unix:///var/run/docker.sock`
