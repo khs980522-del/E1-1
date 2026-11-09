@@ -695,6 +695,9 @@ novol-test2
 git config --global user.name "..."
 git config --global init.defaultBranch main
 git config --list
+git remote -v 
+origin  https://github.com/khs980522-del/E1-1.git (fetch)
+origin  https://github.com/khs980522-del/E1-1.git (push)
 ```
 - VSCode GitHub 연동 스크린샷: ![VSCode GitHub 연동 화면](docs/images/github-vscode.png)
 - Git vs GitHub 역할 차이: 
